@@ -1,0 +1,6 @@
+package com.cos.project.domain.dto;
+
+public class CommonRespDto<T> {
+	private int statusCode; // 1, -1
+	private T data;
+}

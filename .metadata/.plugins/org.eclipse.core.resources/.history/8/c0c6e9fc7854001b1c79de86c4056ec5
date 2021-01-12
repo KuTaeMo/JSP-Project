@@ -1,0 +1,7 @@
+package com.cos.project.service;
+
+public class UserService {
+	public User login(LoginReqDto dto) {
+		return userDao.findByUsernameAndPassword(dto);
+	}
+}

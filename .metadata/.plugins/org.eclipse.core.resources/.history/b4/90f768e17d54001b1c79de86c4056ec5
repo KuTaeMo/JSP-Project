@@ -1,0 +1,59 @@
+package com.cos.project.domain;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.cos.project.config.DB;
+import com.cos.project.domain.dto.JoinReqDto;
+import com.cos.project.domain.dto.LoginReqDto;
+
+public class UserDao {
+
+	public int save(JoinReqDto dto) { // 회원가입
+		String sql = "INSERT INTO user(username, password, email, role) VALUES(?,?,?,?)";
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getUsername());
+			pstmt.setString(2, dto.getPassword());
+			pstmt.setString(3, dto.getEmail());
+			pstmt.setString(4, dto.getRole());
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // 무조건 실행
+			DB.close(conn, pstmt);
+		}
+		return -1;
+	}
+	
+	public User findByUsernameAndPassword(LoginReqDto dto) {
+		String sql = "SELECT id,username,email FROM user WHERE username = ?AND password=?";
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs  = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getUsername());
+			pstmt.setString(2, dto.getPassword());
+			rs =  pstmt.executeQuery();
+
+			if(rs.next()) {
+				User user=User.builder()
+						.id(rs.getInt("id"))
+						.username(rs.getString("username"))
+						.email(rs.getString("email"))
+						.build();
+				return user;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // 무조건 실행
+			DB.close(conn, pstmt, rs);
+		}
+		return null;
+	}
+}

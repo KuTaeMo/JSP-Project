@@ -1,0 +1,18 @@
+package com.cos.project.service;
+
+import com.cos.project.domain.User;
+import com.cos.project.domain.UserDao;
+import com.cos.project.domain.dto.LoginReqDto;
+
+public class UserService {
+	
+	private UserDao userDao;
+	
+	public int join(JoinReqDto dto) {
+		return userDdao.save(dto);
+	}
+	
+	public User login(LoginReqDto dto) {
+		return userDao.findByUsernameAndPassword(dto);
+	}
+}

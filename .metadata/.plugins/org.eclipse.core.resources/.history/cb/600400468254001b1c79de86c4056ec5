@@ -1,0 +1,10 @@
+package com.cos.project.service;
+
+public class BoardService {
+	public List<User> 글목록보기(int page){
+		return userDao.findAll(page);
+	}
+	public int 글개수() {
+		return userDao.count();
+	}
+}

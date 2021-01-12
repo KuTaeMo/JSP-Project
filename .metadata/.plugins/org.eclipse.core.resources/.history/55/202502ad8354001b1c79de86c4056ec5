@@ -1,0 +1,30 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ include file="../layout/header.jsp"%>
+
+<div class="container">
+
+	<div class="progress col-md-12 m-2">
+		<div class="progress-bar" style="width: ${currentPosition}%"></div>
+	</div>
+
+	<!-- JSTL foreach문을 써서 뿌리세요. el표현식과 함께 -->
+
+	<c:forEach var="user" items="${users}">
+		<div class="card col-md-12 m-2">
+			<div class="card-body">
+				<h4 class="card-title">이름 : ${user.username}</h4>
+				<h4 class="card-title">email : ${user.email}</h4>
+				<h4 class="card-title">role : ${user.role}</h4>
+			</div>
+		</div>
+	</c:forEach>
+	<br />
+	
+</div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+function deleteUser(id){
+	$.ajax({
+		type : "post",
+		url : "/blog/reply?cmd=delete&id="+id,
+		dataType : "json"
+	}).done(function(result) { //  { "statusCode" : 1 }
+		if (result.statusCode == 1) {
+			console.log(result);
+			$("#reply-"+id).remove();
+		} else {
+			alert("댓글삭제 실패");
+		}
+	});
+	
+}
