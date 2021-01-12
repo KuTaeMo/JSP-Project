@@ -1,10 +1,8 @@
-# JSP-Project
+# JSP-Project 홈페이지 만들기!
 
-# JSP 홈페이지 만들기!
 
 ## 메인페이지 및 회원 리스트
 ![image](https://user-images.githubusercontent.com/67215505/104269975-d189ba00-54da-11eb-85c7-dbaf5fbad2f9.png)
-
 <hr>
 
 ## 로그인 화면
